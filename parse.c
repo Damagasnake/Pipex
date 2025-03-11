@@ -90,3 +90,16 @@ t_pipexcmd *parsear_entrada(int argc, char **argv)
 
     return head;
 }
+
+t_pipexcmd *parsing_arg(int argc, char **argv) {
+    int i;
+
+    for (i = 2; i < argc - 1; i++) {
+        t_pipexcmd *new_cmd = create_command(NULL, argv, NULL, argc);
+        if (new_cmd == NULL) {
+            return NULL;
+        }
+    }
+
+    return parsear_entrada(argc, argv);
+}
