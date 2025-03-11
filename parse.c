@@ -34,7 +34,7 @@ t_pipexcmd *crea_comando(t_pipexcmd *current, char **argv, t_pipexcmd *head, int
     }
 
     int k;
-    
+
     k = 2;
     t_pipexcmd *parsed_entrada = parsear_entrada(argc, argv);
     if (parsed_entrada == NULL) {
@@ -62,6 +62,30 @@ t_pipexcmd *crea_comando(t_pipexcmd *current, char **argv, t_pipexcmd *head, int
     } else {
         current->nextnode = new_cmd;
         current = new_cmd;
+    }
+
+    return head;
+}
+
+t_pipexcmd *parsear_entrada(int argc, char **argv)
+{
+    t_pipexcmd *head = parsing_arg_initialize();
+
+    int i = 2;
+    int j = 2;
+    while (i < argc - 1) {
+        t_pipexcmd *current = head;
+        while (j < argc - 1 && ft_strcmp(argv[j], "|")!= 0) {
+            i++;
+            j++;
+
+            t_pipexcmd *new_cmd;
+            new_cmd = crea_comando(current, argv, head, argc);
+            if (new_cmd == NULL) 
+                return NULL;
+        }
+
+        i = j + 1;
     }
 
     return head;
