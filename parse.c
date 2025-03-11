@@ -1,0 +1,68 @@
+#include "pipex.h"
+
+t_pipexcmd *parsing_arg_initialize()
+{
+    t_pipexcmd *head;
+    t_pipexcmd *current;
+
+    head = NULL;
+    current = NULL;
+    int i;
+
+    head = malloc(sizeof(t_pipexcmd));
+    if (!head)
+        return NULL;
+    current = head;
+    i = 2;
+
+    return head;
+}
+
+t_pipexcmd *crea_comando(t_pipexcmd *current, char **argv, t_pipexcmd *head, int argc)
+{
+    t_pipexcmd *new_cmd;
+    new_cmd = malloc(sizeof(t_pipexcmd));
+    if (!new_cmd) return NULL;
+
+    new_cmd->nextnode = NULL;
+    
+    new_cmd->cmds = malloc(sizeof(char *) * (2 + 1));
+    if (!new_cmd->cmds)
+    {
+        free(new_cmd);
+        return NULL;
+    }
+
+    int k;
+    
+    k = 2;
+    t_pipexcmd *parsed_entrada = parsear_entrada(argc, argv);
+    if (parsed_entrada == NULL) {
+        free(new_cmd->cmds);
+        free(new_cmd);
+        return NULL;
+    }
+
+    k = 0; 
+    new_cmd->cmds[k] = ft_strdup(parsed_entrada->cmds[0]);
+    if (!new_cmd->cmds[k]) {
+        while (--k >= 0)
+            free(new_cmd->cmds[k]);
+        free(new_cmd->cmds);
+        free(parsed_entrada);
+        free(new_cmd);
+        return NULL;
+    }
+
+    new_cmd->cmds[2] = NULL;
+
+    if (!current) {
+        current = new_cmd;
+        head = current;
+    } else {
+        current->nextnode = new_cmd;
+        current = new_cmd;
+    }
+
+    return head;
+}
