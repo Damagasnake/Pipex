@@ -4,17 +4,19 @@
 #include <stdlib.h>
 #include "../LibftDamaga/libft.h"
 #include "../printf/ft_printf.h"
+#include <sys/uio.h>
 
 typedef struct s_pipexcmd
 {
-    pid_t pid1;
-    pid_t pid2;
-    int tube[2];
-    int infile;
-    int outfile;
-    char **cmds;
-    
-    struct s_pipexcmd *nextnode;
+    pid_t pid1;// pid from the 1º process
+    pid_t pid2;// pid from the 2º process
+    int tube[2];//pipe with 2 pos. 1 read fd 2. write fd 
+    int infile; //fd for tje infile (open and read file)
+    int outfile;//fd for the outfile (open and write file)
+    char **cmds;// array for each cmd and their args
+    int argc;//Nmb of args of our cmds
+    int status;// checks if there is a cmd ex.
+    struct s_pipexcmd *nextnode;//pointer to next node
 }t_pipexcmd;
 
 #endif

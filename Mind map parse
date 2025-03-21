@@ -1,0 +1,46 @@
+┌─────────────────────┐
+                    │    Pipex Command    │
+                    │      Parsing        │
+                    └──────────┬──────────┘
+                               │
+             ┌─────────────────┼─────────────────┐
+             │                 │                 │
+┌────────────▼──────────┐    ┌▼──────────────┐  │
+│  parsing_arg_initialize│    │parsing_arg    │  │
+│---------------------- │    │--------------│  │
+│ - Creates head node   │    │ - Entry point│  │
+│ - Allocates memory    │    │ - Calls other│  │
+│ - Sets nextnode to NULL│    │   functions  │  │
+└────────────┬──────────┘    └───────┬──────┘  │
+             │                       │         │
+             │                       │         │
+┌────────────▼────────────────┐      │         │
+│       parsear_entrada       │◄─────┘         │
+│----------------------------│                 │
+│ - Creates linked list      │                 │
+│ - Loops through arguments  │                 │
+│ - Separates by '|' pipes   │                 │
+│ - Returns head of list     │                 │
+└────────────┬───────────────┘                 │
+             │                                 │
+┌────────────▼───────────────┐                 │
+│       crea_comando         │◄────────────────┘
+│---------------------------│
+│ - Creates command node    │
+│ - Allocates memory        │
+│ - Copies command string   │
+│ - Sets NULL terminator    │
+│ - Adds to linked list     │
+└──────────────────────────┘
+
+t_pipexcmd
+├── pid1 (process ID 1)
+├── pid2 (process ID 2)
+├── tube[2] (pipe file descriptors)
+├── infile (input file descriptor)
+├── outfile (output file descriptor)
+├── cmds (command and arguments)
+├── argc (argument count)
+├── status (execution status)
+└── nextnode (pointer to next command)
+

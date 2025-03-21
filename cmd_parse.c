@@ -85,7 +85,6 @@ t_pipexcmd *parsing_arg(int argc, char **argv)
     int i;
 
     i = 2;
-
     while ( i < argc - 1)
     {
         t_pipexcmd *new_cmd = crea_comando(NULL, argv, NULL, argc);
