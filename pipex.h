@@ -7,7 +7,13 @@
 
 typedef struct s_pipexcmd
 {
+    pid_t pid1;
+    pid_t pid2;
+    int tube[2];
+    int infile;
+    int outfile;
     char **cmds;
+    
     struct s_pipexcmd *nextnode;
 }t_pipexcmd;
 
