@@ -1,3 +1,5 @@
+#ifndef PIPEX_H
+# define PIPEX_H
 #include <string.h>
 #include <stdlib.h>
 #include "../LibftDamaga/libft.h"
@@ -9,3 +11,4 @@ typedef struct s_pipexcmd
     struct s_pipexcmd *nextnode;
 }t_pipexcmd;
 
+#endif
