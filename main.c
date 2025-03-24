@@ -16,9 +16,4 @@ int main(int argc, char **argv, char **envp)
         ft_printf("Error parsing commands\n");
         return (1);
     }
-    void    execute(t_pipexcmd *cmds, char **envp)
-    {
-        
-    }
-    return (0);
 }

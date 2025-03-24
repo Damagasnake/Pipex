@@ -29,7 +29,7 @@ t_pipexcmd *parsear_entrada(int argc, char **argv);
 t_pipexcmd *parsing_arg(int argc, char **argv);
 char *get_path(char **envp);
 char *find_path(char *cmd, char **envp);
-void error(void);
+void ft_error(void);
 void execute(t_pipexcmd *cmds, char **envp);
 void execute_cmd(t_pipexcmd *cmd, char **envp);
 
