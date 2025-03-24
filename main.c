@@ -16,8 +16,9 @@ int main(int argc, char **argv, char **envp)
         ft_printf("Error parsing commands\n");
         return (1);
     }
+    void    execute(int argc, char **argv)
+    {
 
-    // Aquí puedes agregar la lógica para ejecutar los comandos usando cmds y envp
-
+    }
     return (0);
 }

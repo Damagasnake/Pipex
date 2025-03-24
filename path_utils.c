@@ -38,3 +38,8 @@ char *find_path(char *cmd, char **envp)
     free(paths);
     return (0);
 }
+void    error(void)
+{
+    perror("\033[31mError");
+    exit(EXIT_FAILURE);
+}
