@@ -1,10 +1,13 @@
 #ifndef PIPEX_H
 # define PIPEX_H
-#include <string.h>
-#include <stdlib.h>
-#include "../LibftDamaga/libft.h"
-#include "../printf/ft_printf.h"
-#include <sys/uio.h>
+# include <string.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <sys/wait.h>
+# include "../LibftDamaga/libft.h"
+# include "../printf/ft_printf.h"
+# include <sys/uio.h>
 
 typedef struct s_pipexcmd
 {
@@ -18,5 +21,16 @@ typedef struct s_pipexcmd
     int status;// checks if there is a cmd ex.
     struct s_pipexcmd *nextnode;//pointer to next node
 }t_pipexcmd;
+
+// Function prototypes
+t_pipexcmd *parsing_arg_initialize();
+t_pipexcmd *crea_comando(char *cmd);
+t_pipexcmd *parsear_entrada(int argc, char **argv);
+t_pipexcmd *parsing_arg(int argc, char **argv);
+char *get_path(char **envp);
+char *find_path(char *cmd, char **envp);
+void error(void);
+void execute(t_pipexcmd *cmds, char **envp);
+void execute_cmd(t_pipexcmd *cmd, char **envp);
 
 #endif
