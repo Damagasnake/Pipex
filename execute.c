@@ -20,7 +20,34 @@ void    execute(t_pipexcmd *cmds, char **envp)
         current->pid1 = fork();
         if(current->pid1 == -1)
             ft_error();
-        
     }
+        if(current->pid1 == 0)
+        {
+            if(fd_prepipe != -1)
+            {
+                dup2(fd_prepipe,STDIN_FILENO);
+                close(fd_prepipe);
+            }
+            else
+            {
+                dup2(cmds->infile,STDIN_FILENO);
+                close(cmds->infile);
+            }
+            if(current->nextnode)
+            {
+                close(current->tube[0]);
+                dup2(current->tube[1], STDOUT_FILENO);
+                close(current->tube[1]);
+            }
+            else
+            {
+                cmds->outfile = open(cmds->cmds[1], O_RDONLY | O_CREAT | O_TRUNC, 0644);
+                if(cmds->outfile == -1)
+                    ft_error();
+                dup2(cmds->outfile,STDOUT_FILENO);
+                close(cmds->outfile);
+            }
+        }
+        execute_cmd(current,envp);
 }
 
