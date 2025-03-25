@@ -49,5 +49,12 @@ void    execute(t_pipexcmd *cmds, char **envp)
             }
         }
         execute_cmd(current,envp);
+        if(fd_prepipe != -1)
+            close(fd_prepipe);
+        if(current->nextnode)
+            {
+                close(current->tube[1]);
+                fd_prepipe = current->tube[0];
+            }
+            current = current->nextnode;
 }
-
