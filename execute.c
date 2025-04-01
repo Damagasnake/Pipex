@@ -56,7 +56,7 @@ void execute_cmd(t_pipexcmd *cmd, char **envp)
     if(!path)
     {
         ft_printf("Command not found: %s\n", cmd->cmds[0]);
-        exit(127);  // Código de error estándar para comando no encontrado
+        exit(127);  // Error code in bassh used when the cmd is not found
     }
     
     if (execve(path, cmd->cmds, envp) == -1)
@@ -68,13 +68,8 @@ void execute_cmd(t_pipexcmd *cmd, char **envp)
 
 void child_process(t_pipexcmd *cmds, t_pipexcmd *current, int fd_prepipe, char **envp)
 {
-    // Configurar entrada
     setup_input(cmds, current, fd_prepipe);
-    
-    // Configurar salida
     setup_output(cmds, current);
-    
-    // Ejecutar comando
     execute_cmd(current, envp);
 }
 
@@ -94,10 +89,9 @@ void process_commands(t_pipexcmd *cmds, t_pipexcmd *current, int *fd_prepipe, ch
 {
     while (current)
     {
-        // Crear pipe si es necesario
         create_pipe(current);
         
-        // Crear proceso hijo
+        // Create child process and check for errors
         current->pid1 = fork();
         if (current->pid1 == -1)
             ft_error();
@@ -131,12 +125,12 @@ void execute(t_pipexcmd *cmds, char **envp)
     current = cmds;
     fd_prepipe = -1; // there is no previous pipe atm
     
-    // Abrir archivo de entrada
+    // With this call to the function we open our imput file (it uses our cmds + args)
     open_input_file(cmds);
     
-    // Ejecutar todos los comandos
+    // We create our process and assign / parse PID
     process_commands(cmds, current, &fd_prepipe, envp);
     
-    // Esperar a que terminen todos los procesos (opcional)
+    // We wait for our processes to end
     wait_for_processes(cmds);
 }
