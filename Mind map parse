@@ -43,4 +43,3 @@ t_pipexcmd
 ├── argc (argument count)
 ├── status (execution status)
 └── nextnode (pointer to next command)
-

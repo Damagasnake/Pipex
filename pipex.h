@@ -32,5 +32,13 @@ char *find_path(char *cmd, char **envp);
 void ft_error(void);
 void execute(t_pipexcmd *cmds, char **envp);
 void execute_cmd(t_pipexcmd *cmd, char **envp);
+void open_input_file(t_pipexcmd *cmds);
+void process_commands(t_pipexcmd *cmds, t_pipexcmd *current, int *fd_prepipe, char **envp);
+void create_pipe(t_pipexcmd *current);
+void child_process(t_pipexcmd *cmds, t_pipexcmd *current, int fd_prepipe, char **envp);
+void setup_input(t_pipexcmd *cmds, t_pipexcmd *current, int fd_prepipe);
+void setup_output(t_pipexcmd *cmds, t_pipexcmd *current);
+void parent_process(t_pipexcmd *current, int *fd_prepipe);
+void wait_for_processes(t_pipexcmd *cmds);
 
 #endif
