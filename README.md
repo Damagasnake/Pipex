@@ -118,3 +118,7 @@ This project demonstrates:
 ## License
 
 This project is part of the 42 School curriculum.
+
+---
+
+*Authored by Damaga*
