@@ -27,7 +27,6 @@ t_pipexcmd *crea_comando(char *cmd)
         free(new_cmd);
         return NULL;
     }
-    
     // Contar argumentos
     int i = 0;
     while (new_cmd->cmds[i])
@@ -62,7 +61,8 @@ t_pipexcmd *parsear_entrada(int argc, char **argv)
     current = head;
     
     // Crear comandos
-    for (i = 2; i < argc - 1; i++)
+    i = 2;
+    while (i < argc - 1)
     {
         t_pipexcmd *new_cmd = crea_comando(argv[i]);
         if (!new_cmd)
@@ -84,10 +84,33 @@ t_pipexcmd *parsear_entrada(int argc, char **argv)
             }
             return NULL;
         }
-        
         current->nextnode = new_cmd;
         current = new_cmd;
+        i++;
     }
+    t_pipexcmd *new_cmd = crea_comando(argv[i]);
+    if (!new_cmd)
+    {
+        // Liberar memoria en caso de error
+        t_pipexcmd *temp = head;
+        while (temp)
+        {
+            t_pipexcmd *next = temp->nextnode;
+            if (temp->cmds)
+            {
+                int j = 0;
+                while (temp->cmds[j])
+                    free(temp->cmds[j++]);
+                free(temp->cmds);
+            }
+            free(temp);
+            temp = next;
+        }
+        return NULL;
+    }
+    
+    current->nextnode = new_cmd;
+    current = new_cmd;
     
     return head;
 }
