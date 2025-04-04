@@ -31,18 +31,14 @@ int main(int argc, char **argv, char **envp)
         ft_printf("Usage: ./pipex infile cmd1 cmd2 ... outfile\n");
         return (1);
     }
-
     cmds = parsear_entrada(argc, argv);
     if (!cmds)
     {
         ft_printf("Error parsing commands\n");
         return (1);
     }
-    
     execute(cmds, envp);
-    
     // Clean up resources
     free_commands(cmds);
-    
     return (0);
 }
