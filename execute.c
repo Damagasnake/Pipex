@@ -18,6 +18,7 @@ void create_pipe(t_pipexcmd *current)
 
 void setup_input(t_pipexcmd *cmds, t_pipexcmd *current, int fd_prepipe)
 {
+    (void)current;
     if (fd_prepipe != -1)
     {
         dup2(fd_prepipe, STDIN_FILENO);

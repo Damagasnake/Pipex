@@ -19,7 +19,6 @@ t_pipexcmd *crea_comando(char *cmd)
     new_cmd = malloc(sizeof(t_pipexcmd));
     if (!new_cmd)
         return NULL;
-    
     new_cmd->nextnode = NULL;
     new_cmd->cmds = ft_split(cmd, ' ');
     if (!new_cmd->cmds)
@@ -47,19 +46,16 @@ t_pipexcmd *parsear_entrada(int argc, char **argv)
     head = parsing_arg_initialize();
     if (!head)
         return NULL;
-    
+
     head->cmds = malloc(sizeof(char*) * 2);
     if (!head->cmds)
     {
         free(head);
         return NULL;
     }
-    
     head->cmds[0] = ft_strdup(argv[1]); // infile
     head->cmds[1] = ft_strdup(argv[argc-1]); // outfile
-    
     current = head;
-    
     // Crear comandos
     i = 2;
     while (i < argc - 1)
@@ -108,10 +104,8 @@ t_pipexcmd *parsear_entrada(int argc, char **argv)
         }
         return NULL;
     }
-    
     current->nextnode = new_cmd;
     current = new_cmd;
-    
     return head;
 }
 

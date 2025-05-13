@@ -6,7 +6,7 @@
 # include <fcntl.h>
 # include <sys/wait.h>
 # include "../LibftDamaga/libft.h"
-# include "../printf/ft_printf.h"
+# include "printf/ft_printf.h"
 # include <sys/uio.h>
 
 typedef struct s_pipexcmd
