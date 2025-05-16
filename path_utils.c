@@ -65,7 +65,9 @@ char *find_path(char *cmd, char **envp)
         if (access(path, F_OK | X_OK) == 0)
         {
             // Free paths array before returning
-            int j = 0;
+            int j;
+            
+            j = 0;
             while (paths[j])
                 free(paths[j++]);
             free(paths);
