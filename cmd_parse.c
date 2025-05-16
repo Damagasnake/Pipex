@@ -54,7 +54,7 @@ t_pipexcmd *parsear_entrada(int argc, char **argv)
         return NULL;
     }
     head->cmds[0] = ft_strdup(argv[1]); // infile
-    head->cmds[1] = ft_strdup(argv[argc-1]); // outfile
+    head->cmds[1] = ft_strdup(argv[argc - 1]); // outfile
     current = head;
     // Crear comandos
     i = 2;
@@ -84,28 +84,6 @@ t_pipexcmd *parsear_entrada(int argc, char **argv)
         current = new_cmd;
         i++;
     }
-    t_pipexcmd *new_cmd = crea_comando(argv[i]);
-    if (!new_cmd)
-    {
-        // Liberar memoria en caso de error
-        t_pipexcmd *temp = head;
-        while (temp)
-        {
-            t_pipexcmd *next = temp->nextnode;
-            if (temp->cmds)
-            {
-                int j = 0;
-                while (temp->cmds[j])
-                    free(temp->cmds[j++]);
-                free(temp->cmds);
-            }
-            free(temp);
-            temp = next;
-        }
-        return NULL;
-    }
-    current->nextnode = new_cmd;
-    current = new_cmd;
     return head;
 }
 
