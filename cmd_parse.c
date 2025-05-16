@@ -9,6 +9,8 @@ t_pipexcmd *parsing_arg_initialize()
         return NULL;
     head->nextnode = NULL;
     head->cmds = NULL;
+    head->argc = 0;
+    head->status = 0;
     return head;
 }
 
@@ -47,7 +49,7 @@ t_pipexcmd *parsear_entrada(int argc, char **argv)
     if (!head)
         return NULL;
 
-    head->cmds = malloc(sizeof(char*) * 2);
+    head->cmds = malloc(sizeof(char*) * 3);
     if (!head->cmds)
     {
         free(head);
@@ -55,6 +57,9 @@ t_pipexcmd *parsear_entrada(int argc, char **argv)
     }
     head->cmds[0] = ft_strdup(argv[1]); // infile
     head->cmds[1] = ft_strdup(argv[argc - 1]); // outfile
+    head->cmds[2] = NULL; // Add NULL termination
+    head->argc = 2;
+    head->status = 0;
     current = head;
     // Crear comandos
     i = 2;
