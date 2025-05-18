@@ -23,7 +23,7 @@ typedef struct s_pipexcmd
 }t_pipexcmd;
 
 // Function prototypes
-t_pipexcmd *parsing_arg_initialize();
+t_pipexcmd *parsing_arg_initialize(void);
 t_pipexcmd *crea_comando(char *cmd);
 t_pipexcmd *parsear_entrada(int argc, char **argv);
 t_pipexcmd *parsing_arg(int argc, char **argv);
@@ -40,5 +40,6 @@ void setup_input(t_pipexcmd *cmds, t_pipexcmd *current, int fd_prepipe);
 void setup_output(t_pipexcmd *cmds, t_pipexcmd *current);
 void parent_process(t_pipexcmd *current, int *fd_prepipe);
 void wait_for_processes(t_pipexcmd *cmds);
+void free_commands(t_pipexcmd *cmds);
 
 #endif
