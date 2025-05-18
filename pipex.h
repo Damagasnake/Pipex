@@ -40,6 +40,5 @@ void setup_input(t_pipexcmd *cmds, t_pipexcmd *current, int fd_prepipe);
 void setup_output(t_pipexcmd *cmds, t_pipexcmd *current);
 void parent_process(t_pipexcmd *current, int *fd_prepipe);
 void wait_for_processes(t_pipexcmd *cmds);
-void free_commands(t_pipexcmd *cmds);
 
 #endif
