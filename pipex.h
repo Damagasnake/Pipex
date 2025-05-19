@@ -16,6 +16,8 @@ typedef struct s_pipexcmd
     int tube[2];//pipe with 2 pos. 1 read fd 2. write fd 
     int infile; //fd for tje infile (open and read file)
     int outfile;//fd for the outfile (open and write file)
+    char *infile_path;
+    char *outfile_path;
     char **cmds;// array for each cmd and their args
     int argc;//Nmb of args of our cmds
     int status;// checks if there is a cmd ex.

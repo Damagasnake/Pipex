@@ -54,6 +54,8 @@ t_pipexcmd *initialize_head(int argc, char **argv)
 	head->cmds[2] = NULL;
 	head->argc = 2;
 	head->status = 0;
+	head->infile_path = ft_strdup(argv[1]);  // Store infile path separately 
+	head->outfile_path = ft_strdup(argv[argc - 1]); // Store outfile path separately
 	return (head);
 }
 

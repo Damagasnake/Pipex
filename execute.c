@@ -2,7 +2,7 @@
 
 void open_input_file(t_pipexcmd *cmds)
 {
-    cmds->infile = open(cmds->cmds[0], O_RDONLY);
+    cmds->infile = open(cmds->infile_path, O_RDONLY);
     if (cmds->infile == -1)
         ft_error();
 }
@@ -41,7 +41,7 @@ void setup_output(t_pipexcmd *cmds, t_pipexcmd *current)
     }
     else
     {
-        cmds->outfile = open(cmds->cmds[1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+        cmds->outfile = open(cmds->outfile_path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
         if (cmds->outfile == -1)
             ft_error();
         dup2(cmds->outfile, STDOUT_FILENO);

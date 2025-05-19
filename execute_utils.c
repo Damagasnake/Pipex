@@ -56,15 +56,55 @@ void execute(t_pipexcmd *cmds, char **envp)
     t_pipexcmd *current;
     int fd_prepipe;
 
-    current = cmds;
-    fd_prepipe = -1; // there is no previous pipe atm
+    // Skip the head node which contains file paths
+    current = cmds->nextnode;  // Start with the first actual command
+    fd_prepipe = -1;
     
-    // With this call to the function we open our imput file (it uses our cmds + args)
+    // Open input file from the head node
     open_input_file(cmds);
     
-    // We create our process and assign / parse PID
+    // Process commands starting from the first actual command
     process_commands(cmds, current, &fd_prepipe, envp);
     
-    // We wait for our processes to end
+    // Wait for processes to finish
     wait_for_processes(cmds);
 }
+
+// void execute(char **argv, char ***envp)
+// {
+//     pid_t   pid1;
+//     pid_t   pid2;
+//     int     infile;
+//     int     outfile;
+    
+//     int     pipefd[2];
+//     pipe(pipefd);
+
+//     infile = open(argv[1], O_RDONLY);
+//     outfile = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC, 0644);
+
+//     pid1 = fork();
+//     if (pid1 < 0)
+//         return (NULL);
+//     if (pid1 == 0)
+//     {
+//         close(outfile);
+//         close(pipefd[1]);
+//         child_process(argv[2], envp, infile, pipefd[0]);
+//     }
+//     pid2 = fork();
+//     if (pid2 < 0)
+//         return NULL;
+//     if (pid2 == 0)
+//     {
+//         close(infile);
+//         close(pipefd[0]);
+//         child_process(argv[3], envp, outfile, pipefd[1]);
+//     }
+//     close (outfile);
+//     close(infile);
+//     close(pipefd[0]);
+//     close(pipefd[1]);
+//     waitpid(pid1, NULL, 0);
+//     waitpid(pid2, NULL, 0);
+// }
