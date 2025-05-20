@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cmd_parse.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: davidma2 <davidma2@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/20 10:16:59 by davidma2          #+#    #+#             */
+/*   Updated: 2025/05/20 10:19:00 by davidma2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 t_pipexcmd	*parsing_arg_initialize(void)
@@ -36,9 +48,9 @@ t_pipexcmd	*crea_comando(char *cmd)
 	new_cmd->status = 0;
 	return (new_cmd);
 }
-t_pipexcmd *initialize_head(int argc, char **argv)
+t_pipexcmd	*initialize_head(int argc, char **argv)
 {
-	t_pipexcmd *head;
+	t_pipexcmd	*head;
 
 	head = parsing_arg_initialize();
 	if (!head)
@@ -54,16 +66,18 @@ t_pipexcmd *initialize_head(int argc, char **argv)
 	head->cmds[2] = NULL;
 	head->argc = 2;
 	head->status = 0;
-	head->infile_path = ft_strdup(argv[1]);  // Store infile path separately 
-	head->outfile_path = ft_strdup(argv[argc - 1]); // Store outfile path separately
+	head->infile_path = ft_strdup(argv[1]);
+	// Store infile path separately
+	head->outfile_path = ft_strdup(argv[argc - 1]);
+	// Store outfile path separately
 	return (head);
 }
 
-void free_command_list(t_pipexcmd *head)
+void	free_command_list(t_pipexcmd *head)
 {
-	t_pipexcmd *temp;
-	t_pipexcmd *next;
-	int j;
+	t_pipexcmd	*temp;
+	t_pipexcmd	*next;
+	int			j;
 
 	temp = head;
 	while (temp)
@@ -81,11 +95,11 @@ void free_command_list(t_pipexcmd *head)
 	}
 }
 
-t_pipexcmd *add_commands_to_list(int argc, char **argv, t_pipexcmd *head)
+t_pipexcmd	*add_commands_to_list(int argc, char **argv, t_pipexcmd *head)
 {
-	t_pipexcmd *current;
-	t_pipexcmd *new_cmd;
-	int i;
+	t_pipexcmd	*current;
+	t_pipexcmd	*new_cmd;
+	int			i;
 
 	current = head;
 	i = 2;
@@ -104,9 +118,9 @@ t_pipexcmd *add_commands_to_list(int argc, char **argv, t_pipexcmd *head)
 	return (head);
 }
 
-t_pipexcmd *parsear_entrada(int argc, char **argv)
+t_pipexcmd	*parsear_entrada(int argc, char **argv)
 {
-	t_pipexcmd *head;
+	t_pipexcmd	*head;
 
 	head = initialize_head(argc, argv);
 	if (!head)
