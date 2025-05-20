@@ -6,7 +6,7 @@
 /*   By: davidma2 <davidma2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 10:17:30 by davidma2          #+#    #+#             */
-/*   Updated: 2025/05/20 10:17:31 by davidma2         ###   ########.fr       */
+/*   Updated: 2025/05/20 10:31:51 by davidma2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	process_commands(t_pipexcmd *cmds, t_pipexcmd *current, int *fd_prepipe,
 	while (current)
 	{
 		create_pipe(current);
-		// Create child process and check for errors
 		current->pid1 = fork();
 		if (current->pid1 == -1)
 			ft_error();
@@ -67,14 +66,10 @@ void	execute(t_pipexcmd *cmds, char **envp)
 	t_pipexcmd	*current;
 	int			fd_prepipe;
 
-	// Skip the head node which contains file paths
-	current = cmds->nextnode; // Start with the first actual command
+	current = cmds->nextnode;
 	fd_prepipe = -1;
-	// Open input file from the head node
 	open_input_file(cmds);
-	// Process commands starting from the first actual command
 	process_commands(cmds, current, &fd_prepipe, envp);
-	// Wait for processes to finish
 	wait_for_processes(cmds);
 }
 

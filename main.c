@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: davidma2 <davidma2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 10:17:42 by davidma2          #+#    #+#             */
-/*   Updated: 2025/05/20 10:17:43 by davidma2         ###   ########.fr       */
+/*   Created: 2025/05/20 11:05:28 by davidma2          #+#    #+#             */
+/*   Updated: 2025/05/20 11:05:29 by davidma2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	free_commands(t_pipexcmd *cmds)
 				free(current->cmds[i++]);
 			free(current->cmds);
 		}
+		free(current->infile_path);
+		free(current->outfile_path);
 		free(current);
 		current = next;
 	}
@@ -50,7 +52,6 @@ int	main(int argc, char **argv, char **envp)
 		return (1);
 	}
 	execute(cmds, envp);
-	// Clean up resources
 	free_commands(cmds);
 	return (0);
 }

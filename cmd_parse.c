@@ -6,7 +6,7 @@
 /*   By: davidma2 <davidma2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 10:16:59 by davidma2          #+#    #+#             */
-/*   Updated: 2025/05/20 10:19:00 by davidma2         ###   ########.fr       */
+/*   Updated: 2025/05/20 11:06:16 by davidma2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ t_pipexcmd	*parsing_arg_initialize(void)
 	head->cmds = NULL;
 	head->argc = 0;
 	head->status = 0;
+	head->infile_path = NULL;
+	head->outfile_path = NULL;
 	return (head);
 }
 
@@ -48,6 +50,7 @@ t_pipexcmd	*crea_comando(char *cmd)
 	new_cmd->status = 0;
 	return (new_cmd);
 }
+
 t_pipexcmd	*initialize_head(int argc, char **argv)
 {
 	t_pipexcmd	*head;
@@ -67,32 +70,8 @@ t_pipexcmd	*initialize_head(int argc, char **argv)
 	head->argc = 2;
 	head->status = 0;
 	head->infile_path = ft_strdup(argv[1]);
-	// Store infile path separately
 	head->outfile_path = ft_strdup(argv[argc - 1]);
-	// Store outfile path separately
 	return (head);
-}
-
-void	free_command_list(t_pipexcmd *head)
-{
-	t_pipexcmd	*temp;
-	t_pipexcmd	*next;
-	int			j;
-
-	temp = head;
-	while (temp)
-	{
-		next = temp->nextnode;
-		if (temp->cmds)
-		{
-			j = 0;
-			while (temp->cmds[j])
-				free(temp->cmds[j++]);
-			free(temp->cmds);
-		}
-		free(temp);
-		temp = next;
-	}
 }
 
 t_pipexcmd	*add_commands_to_list(int argc, char **argv, t_pipexcmd *head)
@@ -108,7 +87,7 @@ t_pipexcmd	*add_commands_to_list(int argc, char **argv, t_pipexcmd *head)
 		new_cmd = crea_comando(argv[i]);
 		if (!new_cmd)
 		{
-			free_command_list(head);
+			free_commands(head);
 			return (NULL);
 		}
 		current->nextnode = new_cmd;
@@ -127,9 +106,4 @@ t_pipexcmd	*parsear_entrada(int argc, char **argv)
 		return (NULL);
 	head = add_commands_to_list(argc, argv, head);
 	return (head);
-}
-
-t_pipexcmd	*parsing_arg(int argc, char **argv)
-{
-	return (parsear_entrada(argc, argv));
 }

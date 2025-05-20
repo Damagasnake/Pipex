@@ -1,0 +1,19 @@
+cmd_parse.c
+cmd_parse.o
+execute.c
+execute.o
+execute_utils.c
+execute_utils.o
+main.c
+main.o
+Makefile
+Mind map parse
+outfile
+outfile.txt
+parse_args.c
+path_utils.c
+path_utils.o
+pipex
+pipex.h
+printf
+README.md

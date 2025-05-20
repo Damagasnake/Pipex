@@ -6,7 +6,7 @@
 /*   By: davidma2 <davidma2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 10:17:36 by davidma2          #+#    #+#             */
-/*   Updated: 2025/05/20 10:17:37 by davidma2         ###   ########.fr       */
+/*   Updated: 2025/05/20 10:30:03 by davidma2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	execute_cmd(t_pipexcmd *cmd, char **envp)
 	if (!path)
 	{
 		ft_printf("Command not found: %s\n", cmd->cmds[0]);
-		exit(127); // Error code in bassh used when the cmd is not found
+		exit(127);
 	}
 	if (execve(path, cmd->cmds, envp) == -1)
 	{
