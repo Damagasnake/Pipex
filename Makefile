@@ -2,7 +2,7 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = pipex
-SRCS = main.c cmd_parse.c execute.c path_utils.c execute_utils.c
+SRCS = main.c cmd_parse.c execute.c path_utils.c execute_utils.c path_utils2.c
 OBJS = $(SRCS:.c=.o)
 
 # Library paths
