@@ -6,7 +6,7 @@
 /*   By: davidma2 <davidma2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 10:18:14 by davidma2          #+#    #+#             */
-/*   Updated: 2025/05/20 11:02:27 by davidma2         ###   ########.fr       */
+/*   Updated: 2025/05/26 23:20:31 by davidma2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ t_pipexcmd				*parsear_entrada(int argc, char **argv);
 t_pipexcmd				*parsing_arg(int argc, char **argv);
 char					*get_path(char **envp);
 char					*find_path(char *cmd, char **envp);
+void					free_paths_array(char **paths);
+char					*check_absolute_path(char *cmd);
+char					*build_full_path(char *dir, char *cmd);
+char					*search_in_paths(char **paths, char *cmd);
 void					ft_error(void);
 void					execute(t_pipexcmd *cmds, char **envp);
 void					execute_cmd(t_pipexcmd *cmd, char **envp);
