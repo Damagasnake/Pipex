@@ -1,35 +1,36 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: davidma2 <davidma2@student.42madrid.com    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/05/28 15:07:00 by davidma2          #+#    #+#              #
+#    Updated: 2025/05/28 15:08:15 by davidma2         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 # Variables
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-NAME = pipex
-SRCS = main.c cmd_parse.c execute.c path_utils.c execute_utils.c path_utils2.c \
-       printf/ft_printf.c printf/printf_utils.c printf/ft_printf_hex.c printf/ft_pointersp.c
+NAME = libftprintf.a
+SRCS = ft_printf.c printf_utils.c ft_printf_hex.c ft_pointersp.c
 OBJS = $(SRCS:.c=.o)
 
-# Library paths
-LIBFT_DIR = ../LibftDamaga
-LIBFT = $(LIBFT_DIR)/libft.a
-INCLUDES = -I$(LIBFT_DIR) -Iprintf
-
 # Rules
-all: $(LIBFT) $(NAME)
-
-$(LIBFT):
-	@make -C $(LIBFT_DIR)
+all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT)
+	ar rcs $(NAME) $(OBJS)
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
-	make -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
-	make -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
