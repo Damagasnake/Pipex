@@ -6,7 +6,7 @@
 /*   By: davidma2 <davidma2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 10:17:36 by davidma2          #+#    #+#             */
-/*   Updated: 2025/05/20 11:30:47 by davidma2         ###   ########.fr       */
+/*   Updated: 2025/05/28 11:44:58 by davidma2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ void	execute_cmd(t_pipexcmd *cmd, char **envp)
 	path = find_path(cmd->cmds[0], envp);
 	if (!path)
 	{
-		ft_printf("Command not found: %s\n", cmd->cmds[0]);
+		write(STDERR_FILENO, "Command not found: ", 19);
+		write(STDERR_FILENO, cmd->cmds[0], ft_strlen(cmd->cmds[0]));
+		write(STDERR_FILENO, "\n", 1);
+		
 		exit(127);
 	}
 	if (execve(path, cmd->cmds, envp) == -1)
