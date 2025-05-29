@@ -6,14 +6,14 @@
 /*   By: davidma2 <davidma2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 10:18:14 by davidma2          #+#    #+#             */
-/*   Updated: 2025/05/26 23:20:31 by davidma2         ###   ########.fr       */
+/*   Updated: 2025/05/28 15:52:50 by davidma2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 # include "../LibftDamaga/libft.h"
-# include "printf/ft_printf.h"
+# include "../ft_printf_davidma2/ft_printf.h"
 # include <fcntl.h>
 # include <stdlib.h>
 # include <string.h>

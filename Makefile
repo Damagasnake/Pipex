@@ -6,13 +6,13 @@
 #    By: davidma2 <davidma2@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/28 15:30:00 by davidma2          #+#    #+#              #
-#    Updated: 2025/05/28 15:16:00 by davidma2         ###   ########.fr        #
+#    Updated: 2025/05/29 11:38:31 by davidma2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Variables
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 NAME = pipex
 
 # Source files
@@ -30,7 +30,7 @@ OBJS = $(SRCS:.c=.o)
 LIBFT_DIR = ../LibftDamaga
 LIBFT = $(LIBFT_DIR)/libft.a
 
-PRINTF_DIR = printf
+PRINTF_DIR = ../ft_printf_davidma2
 PRINTF = $(PRINTF_DIR)/libftprintf.a
 
 # Include directories
@@ -67,15 +67,5 @@ fclean: clean
 	@make -C $(PRINTF_DIR) fclean
 
 re: fclean all
-
-test: $(NAME)
-	@echo "Testing pipex with basic commands..."
-	@echo "Testing: echo hello | cat"
-	@echo "hello world" > test_input.txt
-	@./$(NAME) test_input.txt "cat" "wc -l" test_output.txt
-	@echo "Expected: 1"
-	@echo "Got:"
-	@cat test_output.txt
-	@rm -f test_input.txt test_output.txt
 
 .PHONY: all clean fclean re test
