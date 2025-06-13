@@ -6,14 +6,14 @@
 /*   By: davidma2 <davidma2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 10:17:36 by davidma2          #+#    #+#             */
-/*   Updated: 2025/05/28 12:10:16 by davidma2         ###   ########.fr       */
+/*   Updated: 2025/06/02 11:24:13 by davidma2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
 void	open_input_file(t_pipexcmd *cmds)
-{
+{                                                                                                                                                                                          
 	cmds->infile = open(cmds->infile_path, O_RDONLY);
 	if (cmds->infile == -1)
 		ft_error();

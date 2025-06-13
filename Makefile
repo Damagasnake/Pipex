@@ -6,7 +6,7 @@
 #    By: davidma2 <davidma2@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/28 15:30:00 by davidma2          #+#    #+#              #
-#    Updated: 2025/05/29 11:38:31 by davidma2         ###   ########.fr        #
+#    Updated: 2025/06/13 11:44:11 by davidma2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ OBJS = $(SRCS:.c=.o)
 LIBFT_DIR = ../LibftDamaga
 LIBFT = $(LIBFT_DIR)/libft.a
 
-PRINTF_DIR = ../ft_printf_davidma2
+PRINTF_DIR = ft_printf_davidma2
 PRINTF = $(PRINTF_DIR)/libftprintf.a
 
 # Include directories
